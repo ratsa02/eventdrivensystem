@@ -1,0 +1,8 @@
+twitter-to-kafka-service:
+  twitter-keywords:
+    - Java
+    - MicroService
+    - Elastic Search
+    - Kafka
+    - Spring
+  welcome-message: My FirstSprigBootApp
