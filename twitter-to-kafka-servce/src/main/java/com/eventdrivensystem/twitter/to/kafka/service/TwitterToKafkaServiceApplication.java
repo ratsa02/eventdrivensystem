@@ -1,11 +1,13 @@
 package com.eventdrivensystem.twitter.to.kafka.service;
 
 import com.eventdrivensystem.twitter.to.kafka.service.config.TwitterToKafkaServiceConfigData;
+import com.eventdrivensystem.twitter.to.kafka.service.runner.StreamRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 import java.util.Arrays;
 
@@ -17,9 +19,10 @@ public class TwitterToKafkaServiceApplication implements CommandLineRunner {
 
 
     private final TwitterToKafkaServiceConfigData twitterToKafkaServiceConfigData;
-
-    public TwitterToKafkaServiceApplication(TwitterToKafkaServiceConfigData configData) {
+    public final StreamRunner streamRunner;
+    public TwitterToKafkaServiceApplication(TwitterToKafkaServiceConfigData configData, StreamRunner streamRunner) {
         this.twitterToKafkaServiceConfigData = configData;
+        this.streamRunner = streamRunner;
     }
 
     public static void main(String[] args) {
