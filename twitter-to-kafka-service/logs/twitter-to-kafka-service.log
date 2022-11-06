@@ -1,26 +1,25 @@
-2022-11-05 22:48:26 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - Starting TwitterToKafkaServiceApplication using Java 11.0.16.1 on GUDU-LAPTOP with PID 7980 (C:\UdemyCourse\eventdrivensystem\twitter-to-kafka-servce\target\classes started by Admin in C:\UdemyCourse\eventdrivensystem)
-2022-11-05 22:48:26 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2022-11-05 22:48:27 [main] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'twitterToKafkaServiceApplication': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'config.TwitterToKafkaServiceConfigData' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2022-11-05 22:48:27 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+2022-11-06 09:14:02 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - Starting TwitterToKafkaServiceApplication using Java 11.0.16.1 on GUDU-LAPTOP with PID 13488 (C:\UdemyCourse\eventdrivensystem\twitter-to-kafka-servce\target\classes started by Admin in C:\UdemyCourse\eventdrivensystem)
+2022-11-06 09:14:02 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2022-11-06 09:14:03 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - Started TwitterToKafkaServiceApplication in 1.333 seconds (JVM running for 2.133)
+2022-11-06 09:14:03 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - [Java, MicroService, Elastic Search, Kafka, Spring]
+2022-11-06 09:14:03 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - My FirstSprigBootApp
+2022-11-06 09:14:03 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2022-11-05 22:48:27 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.eventdrivensystem.twitter.to.kafka.service.TwitterToKafkaServiceApplication required a bean of type 'config.TwitterToKafkaServiceConfigData' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'config.TwitterToKafkaServiceConfigData' in your configuration.
-
-2022-11-05 23:40:24 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - Starting TwitterToKafkaServiceApplication using Java 11.0.16.1 on GUDU-LAPTOP with PID 14812 (C:\UdemyCourse\eventdrivensystem\twitter-to-kafka-servce\target\classes started by Admin in C:\UdemyCourse\eventdrivensystem)
-2022-11-05 23:40:24 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - No active profile set, falling back to 1 default profile: "default"
-2022-11-05 23:40:25 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - Started TwitterToKafkaServiceApplication in 1.268 seconds (JVM running for 2.019)
-2022-11-05 23:40:25 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - [Java, MicroService, Elastic Search, Kafka, Spring]
-2022-11-05 23:40:25 [main] INFO  c.e.t.t.k.s.TwitterToKafkaServiceApplication - My FirstSprigBootApp
+2022-11-06 09:14:03 [main] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:774)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:755)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.eventdrivensystem.twitter.to.kafka.service.TwitterToKafkaServiceApplication.main(TwitterToKafkaServiceApplication.java:29)
+Caused by: java.lang.IllegalStateException: Authentication credentials are missing. See http://twitter4j.org/en/configuration.html for details. See and register at http://apps.twitter.com/
+	at twitter4j.TwitterBaseImpl.ensureAuthorizationEnabled(TwitterBaseImpl.java:219)
+	at twitter4j.TwitterStreamImpl.filter(TwitterStreamImpl.java:325)
+	at com.eventdrivensystem.twitter.to.kafka.service.runner.impl.TwitterKafkaStreamRunner.addFilter(TwitterKafkaStreamRunner.java:41)
+	at com.eventdrivensystem.twitter.to.kafka.service.runner.impl.TwitterKafkaStreamRunner.start(TwitterKafkaStreamRunner.java:35)
+	at com.eventdrivensystem.twitter.to.kafka.service.TwitterToKafkaServiceApplication.run(TwitterToKafkaServiceApplication.java:37)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:771)
+	... 5 common frames omitted
+2022-11-06 09:14:03 [main] INFO  c.e.t.t.k.s.r.i.TwitterKafkaStreamRunner - Closing twitter stream!
