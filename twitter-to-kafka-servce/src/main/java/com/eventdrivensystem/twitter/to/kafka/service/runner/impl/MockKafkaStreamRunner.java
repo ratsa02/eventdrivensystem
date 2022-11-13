@@ -59,7 +59,7 @@ public class MockKafkaStreamRunner implements StreamRunner {
     };
 
 
-    private static final String tweetAsRawJson =  "{" +
+    private static final String tweetAsRawJson = "{" +
             "\"created_at\":\"{0}\"," +
             "\"id\":\"{1}\"," +
             "\"text\":\"{2}\"," +
@@ -67,56 +67,13 @@ public class MockKafkaStreamRunner implements StreamRunner {
             "}";
 
 
-    private static final String TWITTER_STATUS_DATE_FORMAT= "EEE MMM dd HH:mm:ss zz yyyy";
-
-
+    private static final String TWITTER_STATUS_DATE_FORMAT = "EEE MMM dd HH:mm:ss zz yyyy";
 
 
     @Override
     public void start() throws TwitterException, IOException, URISyntaxException {
 
-        final String[] keywords = twitterToKafkaServiceConfigData.getTwitterKeywords().toArray(new String[0]);
-        final int minTweetLength = twitterToKafkaServiceConfigData.getMockMinTweetLength();
-        final int maxTweetLength = twitterToKafkaServiceConfigData.getMockMaxTweetLength();
-        long sleepTimeMS = twitterToKafkaServiceConfigData.getMockSleeps();
 
-        LOG.info("Starting mock filtering twitter streams for keywords {}", Arrays.toString(keywords));
-        simulateTwitterStream(keywords,minTweetLength,maxTweetLength,long sleepTimeMS);
-
-
-
-    }
-
-    private void simulateTwitterStream(String[] keywords,int minTweet,int maxTweet,long sleepInMS){
-
-        Executors.newSingleThreadExecutor().submit(()->{
-            try {
-                while(true){
-                    String formatterTweetAsRawJson = getFomattedTweet(keywords,minTweet,maxTweet);
-                    Status status = TwitterObjectFactory.createStatus(formatterTweetAsRawJson);
-                    twitterToKafkaStatusListner.onStatus(status);
-                    sleep(sleepInMS);
-                }
-            }catch(TwitterException | InterruptedException e){
-                LOG.error("Error Creating twitter status!",e);
-            }
-
-        });
-
-    }
-
-    private void sleep(long sleepInMS) throws InterruptedException {
-        try {
-            Thread.sleep(sleepInMS);
-        } catch (InterruptedException e) {
-            throw new TwitterToKafkaServiceException("Error while sleeping for waiting new status to create!!");
-        }
-    }
-
-    private String getFormatterTweet(String[] keywords,int minTweet,int maxTweet){
-        String[] params = new String[]{
-                ZonedDateTime.now().format(DateTimeFormatter.ofPattern(TWITTER_STATUS_DATE_FORMAT, Locale.ENGLISH)
-                ),
-        }
     }
 }
+
