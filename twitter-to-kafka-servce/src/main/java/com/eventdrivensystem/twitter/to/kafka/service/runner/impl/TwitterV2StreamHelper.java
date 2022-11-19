@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import twitter4j.*;
@@ -36,7 +37,7 @@ import java.util.Map;
 
 
 @Component
-@ConditionalOnExpression("${twitter-to-kafka-service.enable-v2-tweets} && not ${twitter-to-kafka-service.enable-mock-tweets}")
+@ConditionalOnProperty(name="twitter-to-kafka-service.enable-v2-tweets",havingValue = "true",matchIfMissing = false)
 public class TwitterV2StreamHelper {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterV2StreamHelper.class);

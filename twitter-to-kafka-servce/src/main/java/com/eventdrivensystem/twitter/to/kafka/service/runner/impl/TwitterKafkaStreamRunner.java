@@ -16,7 +16,7 @@ import javax.annotation.PreDestroy;
 import java.util.Arrays;
 
 @Component
-@ConditionalOnProperty(name = "twitter-to-kafka-service.enable-v2-tweets",havingValue = "false")
+@ConditionalOnProperty(name = "twitter-to-kafka-service.enable-v2-tweets",havingValue = "true", matchIfMissing = false )
 public class TwitterKafkaStreamRunner implements StreamRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterKafkaStreamRunner.class);
@@ -24,6 +24,7 @@ public class TwitterKafkaStreamRunner implements StreamRunner {
     private final TwitterToKafkaServiceConfigData twitterToKafkaServiceConfigData;
     private final TwitterToKafkaStatusListner twitterToKafkaStatusListner;
     TwitterStream twitterStream;
+
 
     public TwitterKafkaStreamRunner(TwitterToKafkaServiceConfigData configData, TwitterToKafkaStatusListner statusListner) {
         this.twitterToKafkaServiceConfigData = configData;
